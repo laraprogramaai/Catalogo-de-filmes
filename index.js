@@ -15,7 +15,8 @@ let getMovie = () => {
 
     //if input isn't empty
     else {
-        fetch(url).then((resp) => resp.json()).then((data) => {
+        fetch(url).then((resp) => resp.json())
+        await .then((data) => {
             //if movie exist in database
             if (data.Response == "True") {
                 result.innerHTML = `
@@ -49,13 +50,12 @@ let getMovie = () => {
                 result.innerHTML = `<h3 class="msg">${data.Error}</h3>`;
             }
         })
-            //if error occurs
-            .catch(() => {
-                result.innerHTML = `<h3 class="msg">Error Occured</h3>`;
-            });
+        //if error occurs
+        .catch(() => {
+            result.innerHTML = `<h3 class="msg">Error Occured</h3>`;
+        });
     }
 };
 
 searchBtn.addEventListener("click", getMovie);
 window.addEventListener("load", getMovie);
-
